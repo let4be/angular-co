@@ -1,5 +1,15 @@
 # angular-co
-The ultimate generator based flow-control goodness for angular.js
+The ultimate generator based flow-control goodness for angular.js built using 
+
+https://github.com/tj/co
+
+and
+
+https://github.com/google/traceur-compiler
+
+to privde browser support for generators
+
+Ensure you have traceur-runtime.js included in order this to work
 
 Very basic example(borwserify/require.js):
 
@@ -16,8 +26,3 @@ Very basic example(borwserify/require.js):
   ```
 
 this library also supports generator based reduce/map for arrays and object, please check source code.
-
-
-Built using https://github.com/google/traceur-compiler
-
-Ensure you have traceur-runtime.js included in order this to work
