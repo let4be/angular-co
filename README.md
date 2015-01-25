@@ -18,6 +18,9 @@ Very basic example(borwserify/require.js):
     var sleep = require('co-sleep');
     co(function *() {
       yield sleep(1000);
+      console.log('hey there!');
+      yield sleep(2000);
+      console.log('wow!');
     })
     .then(() => {
       console.log('sleep finished');
