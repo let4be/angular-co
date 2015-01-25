@@ -17,5 +17,7 @@ Very basic example(borwserify/require.js):
 
 this library also supports generator based reduce/map for arrays and object, please check source code.
 
+
 Built using https://github.com/google/traceur-compiler
+
 Ensure you have traceur-runtime.js included in order this to work
