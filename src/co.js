@@ -103,4 +103,3 @@ angular.module('angular-co', []).factory('co', function($q, $rootScope, $excepti
 
 	return co;
 });
-
