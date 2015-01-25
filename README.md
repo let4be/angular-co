@@ -12,8 +12,8 @@ Very basic example(borwserify/require.js):
     .then(() => {
       console.log('sleep finished');
     });
-  })
-  ```;
+  });
+  ```
 
 this library also supports generator based reduce/map for arrays and object, please check source code.
 
