@@ -1,0 +1,23 @@
+{
+  "name": "angular-co",
+  "version": "0.0.1",
+  "authors": [
+    "let4be <let4be@gmail.com>"
+  ],
+  "description": "The ultimate generator based flow-control goodness for angular.js",
+  "main": "co.js",
+  "keywords": [
+    "angular.js",
+    "co.js",
+    "generator",
+    "flow"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
