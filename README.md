@@ -7,7 +7,7 @@ and
 
 https://github.com/google/traceur-compiler
 
-to privde browser support for generators
+to provide browser support for generators
 
 Ensure you have traceur-runtime.js included in order this to work
 
