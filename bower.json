@@ -5,7 +5,7 @@
     "let4be <let4be@gmail.com>"
   ],
   "description": "The ultimate generator based flow-control goodness for angular.js",
-  "main": "co.js",
+  "main": "dist/co.js",
   "keywords": [
     "angular.js",
     "co.js",
