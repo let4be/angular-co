@@ -1,302 +1,246 @@
 "use strict";
-angular.module('angular-co', []).factory('co', ["$q", "$rootScope", "$exceptionHandler", function($q, $rootScope, $exceptionHandler) {
-  var createGeneratorProxy = (function(gen) {
-    return $traceurRuntime.initGeneratorFunction(function $__2() {
-      var $__3,
-          err;
-      return $traceurRuntime.createGeneratorInstance(function($ctx) {
-        while (true)
-          switch ($ctx.state) {
-            case 0:
-              $ctx.pushTry(7, 8);
-              $ctx.state = 10;
-              break;
-            case 10:
-              $ctx.state = 2;
-              return gen;
-            case 2:
-              $__3 = $ctx.sent;
-              $ctx.state = 4;
-              break;
-            case 4:
-              $ctx.returnValue = $__3;
-              $ctx.state = 8;
-              $ctx.finallyFallThrough = -2;
-              break;
-            case 6:
-              $ctx.popTry();
-              $ctx.state = 8;
-              $ctx.finallyFallThrough = -2;
-              break;
-            case 7:
-              $ctx.popTry();
-              err = $ctx.storedException;
-              $ctx.state = 13;
-              break;
-            case 13:
-              $exceptionHandler(err);
-              throw err;
-              $ctx.state = 8;
-              $ctx.finallyFallThrough = -2;
-              break;
-            case 8:
-              $ctx.popTry();
-              $ctx.state = 19;
-              break;
-            case 19:
-              $rootScope.$apply();
-              $ctx.state = 17;
-              break;
-            case 17:
-              $ctx.state = $ctx.finallyFallThrough;
-              break;
-            default:
-              return $ctx.end();
-          }
-      }, $__2, this);
+
+angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionHandler", function ($q, $rootScope, $exceptionHandler) {
+  var createGeneratorProxy = function (gen) {
+    return regeneratorRuntime.mark(function callee$2$0() {
+      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+        while (1) switch (context$3$0.prev = context$3$0.next) {
+          case 0:
+            context$3$0.prev = 0;
+            context$3$0.next = 3;
+            return gen;
+          case 3:
+            return context$3$0.abrupt("return", context$3$0.sent);
+          case 6:
+            context$3$0.prev = 6;
+            context$3$0.t0 = context$3$0["catch"](0);
+            $exceptionHandler(context$3$0.t0);
+
+            throw context$3$0.t0;
+          case 10:
+            context$3$0.prev = 10;
+            $rootScope.$apply();
+            context$3$0.finish(10);
+
+          case 13:
+          case "end":
+            return context$3$0.stop();
+        }
+      }, callee$2$0, this, [[0, 6, 10]]);
     });
-  });
-  var co = function(gen) {
+  };
+
+  var co = function (gen) {
     var deferred = $q.defer();
-    coJS(createGeneratorProxy(gen)).then(function() {
+
+    coJS(createGeneratorProxy(gen)).then(function () {
       deferred.resolve.apply(deferred.resolve, arguments);
-    }).catch(function(err) {
+    })["catch"](function (err) {
       deferred.reject(err);
     });
+
     return deferred.promise;
   };
-  co.transform = function(gen, transform) {
-    return co($traceurRuntime.initGeneratorFunction(function $__2() {
-      var $__4,
-          $__5;
-      return $traceurRuntime.createGeneratorInstance(function($ctx) {
-        while (true)
-          switch ($ctx.state) {
-            case 0:
-              $ctx.state = 2;
-              return gen;
-            case 2:
-              $__4 = $ctx.sent;
-              $ctx.state = 4;
-              break;
-            case 4:
-              $__5 = transform($__4);
-              $ctx.state = 6;
-              break;
-            case 6:
-              $ctx.returnValue = $__5;
-              $ctx.state = -2;
-              break;
-            default:
-              return $ctx.end();
-          }
-      }, $__2, this);
+
+  co.transform = function (gen, transform) {
+    return co(regeneratorRuntime.mark(function callee$2$0() {
+      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+        while (1) switch (context$3$0.prev = context$3$0.next) {
+          case 0:
+            context$3$0.next = 2;
+            return gen;
+          case 2:
+            context$3$0.t1 = context$3$0.sent;
+            return context$3$0.abrupt("return", transform(context$3$0.t1));
+          case 4:
+          case "end":
+            return context$3$0.stop();
+        }
+      }, callee$2$0, this);
     }));
   };
-  co.each = function(object, mapGen) {
-    return co($traceurRuntime.initGeneratorFunction(function $__2() {
-      var i,
-          $__0,
-          $__1,
-          k;
-      return $traceurRuntime.createGeneratorInstance(function($ctx) {
-        while (true)
-          switch ($ctx.state) {
-            case 0:
-              $ctx.state = (angular.isArray(object)) ? 6 : 16;
+
+  co.each = function (object, mapGen) {
+    return co(regeneratorRuntime.mark(function callee$2$0() {
+      var i, _iterator, _step, k;
+      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+        while (1) switch (context$3$0.prev = context$3$0.next) {
+          case 0:
+            if (!angular.isArray(object)) {
+              context$3$0.next = 10;
               break;
-            case 6:
-              i = 0;
-              $ctx.state = 7;
+            }
+            i = 0;
+          case 2:
+            if (!(i < object.length)) {
+              context$3$0.next = 8;
               break;
-            case 7:
-              $ctx.state = (i < object.length) ? 1 : -2;
+            }
+            context$3$0.next = 5;
+            return mapGen(object[i], i, object);
+          case 5:
+            i++;
+            context$3$0.next = 2;
+            break;
+          case 8:
+            context$3$0.next = 18;
+            break;
+          case 10:
+            if (!angular.isObject(object)) {
+              context$3$0.next = 18;
               break;
-            case 4:
-              i++;
-              $ctx.state = 7;
+            }
+            _iterator = Object.keys(object)[Symbol.iterator]();
+          case 12:
+            if ((_step = _iterator.next()).done) {
+              context$3$0.next = 18;
               break;
-            case 1:
-              $ctx.state = 2;
-              return mapGen(object[i], i, object);
-            case 2:
-              $ctx.maybeThrow();
-              $ctx.state = 4;
-              break;
-            case 16:
-              $ctx.state = (angular.isObject(object)) ? 15 : -2;
-              break;
-            case 15:
-              $__0 = Object.keys(object)[$traceurRuntime.toProperty(Symbol.iterator)]();
-              $ctx.state = 11;
-              break;
-            case 11:
-              $ctx.state = (!($__1 = $__0.next()).done) ? 12 : -2;
-              break;
-            case 12:
-              k = $__1.value;
-              $ctx.state = 13;
-              break;
-            case 13:
-              $ctx.state = 9;
-              return mapGen(object[k], k, object);
-            case 9:
-              $ctx.maybeThrow();
-              $ctx.state = 11;
-              break;
-            default:
-              return $ctx.end();
-          }
-      }, $__2, this);
+            }
+            k = _step.value;
+            context$3$0.next = 16;
+            return mapGen(object[k], k, object);
+          case 16:
+            context$3$0.next = 12;
+            break;
+          case 18:
+          case "end":
+            return context$3$0.stop();
+        }
+      }, callee$2$0, this);
     }));
   };
-  co.map = function(object, mapGen, init) {
-    if (!object)
-      return init;
-    return co($traceurRuntime.initGeneratorFunction(function $__2() {
-      var r,
-          i,
-          $__0,
-          $__1,
-          k;
-      return $traceurRuntime.createGeneratorInstance(function($ctx) {
-        while (true)
-          switch ($ctx.state) {
-            case 0:
-              $ctx.state = (angular.isArray(object)) ? 8 : 20;
+
+  co.map = function (object, mapGen, init) {
+    if (!object) return init;
+
+    return co(regeneratorRuntime.mark(function callee$2$0() {
+      var r, i, _iterator2, _step2, k;
+      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+        while (1) switch (context$3$0.prev = context$3$0.next) {
+          case 0:
+            if (!angular.isArray(object)) {
+              context$3$0.next = 12;
               break;
-            case 8:
-              r = [];
-              $ctx.state = 9;
+            }
+            r = [];
+            i = 0;
+          case 3:
+            if (!(i < object.length)) {
+              context$3$0.next = 10;
               break;
-            case 9:
-              i = 0;
-              $ctx.state = 7;
+            }
+            context$3$0.next = 6;
+            return mapGen(object[i], i, object);
+          case 6:
+            r[i] = context$3$0.sent;
+          case 7:
+            i++;
+            context$3$0.next = 3;
+            break;
+          case 10:
+            context$3$0.next = 22;
+            break;
+          case 12:
+            if (!angular.isObject(object)) {
+              context$3$0.next = 22;
               break;
-            case 7:
-              $ctx.state = (i < object.length) ? 1 : 5;
+            }
+            r = {};
+            _iterator2 = Object.keys(object)[Symbol.iterator]();
+          case 15:
+            if ((_step2 = _iterator2.next()).done) {
+              context$3$0.next = 22;
               break;
-            case 4:
-              i++;
-              $ctx.state = 7;
-              break;
-            case 1:
-              $ctx.state = 2;
-              return mapGen(object[i], i, object);
-            case 2:
-              r[i] = $ctx.sent;
-              $ctx.state = 4;
-              break;
-            case 20:
-              $ctx.state = (angular.isObject(object)) ? 18 : 5;
-              break;
-            case 18:
-              r = {};
-              $ctx.state = 19;
-              break;
-            case 19:
-              $__0 = Object.keys(object)[$traceurRuntime.toProperty(Symbol.iterator)]();
-              $ctx.state = 13;
-              break;
-            case 13:
-              $ctx.state = (!($__1 = $__0.next()).done) ? 14 : 5;
-              break;
-            case 14:
-              k = $__1.value;
-              $ctx.state = 15;
-              break;
-            case 15:
-              $ctx.state = 11;
-              return mapGen(object[k], k, object);
-            case 11:
-              r[k] = $ctx.sent;
-              $ctx.state = 13;
-              break;
-            case 5:
-              $ctx.returnValue = r;
-              $ctx.state = -2;
-              break;
-            default:
-              return $ctx.end();
-          }
-      }, $__2, this);
+            }
+            k = _step2.value;
+            context$3$0.next = 19;
+            return mapGen(object[k], k, object);
+          case 19:
+            r[k] = context$3$0.sent;
+          case 20:
+            context$3$0.next = 15;
+            break;
+          case 22:
+            return context$3$0.abrupt("return", r);
+          case 23:
+          case "end":
+            return context$3$0.stop();
+        }
+      }, callee$2$0, this);
     }));
   };
-  co.reduce = function(object, reduceGen, init) {
-    if (!object)
-      return init;
-    return co($traceurRuntime.initGeneratorFunction(function $__2() {
-      var i,
-          $__0,
-          $__1,
-          k;
-      return $traceurRuntime.createGeneratorInstance(function($ctx) {
-        while (true)
-          switch ($ctx.state) {
-            case 0:
-              $ctx.state = (angular.isArray(object)) ? 6 : 16;
+
+  co.reduce = function (object, reduceGen, init) {
+    if (!object) return init;
+
+    return co(regeneratorRuntime.mark(function callee$2$0() {
+      var i, _iterator3, _step3, k;
+      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+        while (1) switch (context$3$0.prev = context$3$0.next) {
+          case 0:
+            if (!angular.isArray(object)) {
+              context$3$0.next = 11;
               break;
-            case 6:
-              i = 0;
-              $ctx.state = 7;
+            }
+            i = 0;
+          case 2:
+            if (!(i < object.length)) {
+              context$3$0.next = 9;
               break;
-            case 7:
-              $ctx.state = (i < object.length) ? 1 : 5;
+            }
+            context$3$0.next = 5;
+            return reduceGen(init, object[i], i, object);
+          case 5:
+            init = context$3$0.sent;
+          case 6:
+            i++;
+            context$3$0.next = 2;
+            break;
+          case 9:
+            context$3$0.next = 20;
+            break;
+          case 11:
+            if (!angular.isObject(object)) {
+              context$3$0.next = 20;
               break;
-            case 4:
-              i++;
-              $ctx.state = 7;
+            }
+            _iterator3 = Object.keys(object)[Symbol.iterator]();
+          case 13:
+            if ((_step3 = _iterator3.next()).done) {
+              context$3$0.next = 20;
               break;
-            case 1:
-              $ctx.state = 2;
-              return reduceGen(init, object[i], i, object);
-            case 2:
-              init = $ctx.sent;
-              $ctx.state = 4;
-              break;
-            case 16:
-              $ctx.state = (angular.isObject(object)) ? 15 : 5;
-              break;
-            case 15:
-              $__0 = Object.keys(object)[$traceurRuntime.toProperty(Symbol.iterator)]();
-              $ctx.state = 11;
-              break;
-            case 11:
-              $ctx.state = (!($__1 = $__0.next()).done) ? 12 : 5;
-              break;
-            case 12:
-              k = $__1.value;
-              $ctx.state = 13;
-              break;
-            case 13:
-              $ctx.state = 9;
-              return reduceGen(init, object[k], k, object);
-            case 9:
-              init = $ctx.sent;
-              $ctx.state = 11;
-              break;
-            case 5:
-              $ctx.returnValue = init;
-              $ctx.state = -2;
-              break;
-            default:
-              return $ctx.end();
-          }
-      }, $__2, this);
+            }
+            k = _step3.value;
+            context$3$0.next = 17;
+            return reduceGen(init, object[k], k, object);
+          case 17:
+            init = context$3$0.sent;
+          case 18:
+            context$3$0.next = 13;
+            break;
+          case 20:
+            return context$3$0.abrupt("return", init);
+          case 21:
+          case "end":
+            return context$3$0.stop();
+        }
+      }, callee$2$0, this);
     }));
   };
-  co.wrap = function(gen) {
+
+  co.wrap = function (gen) {
     var coFn = coJS.wrap(createGeneratorProxy(gen));
-    return function() {
+
+    return function () {
       var deferred = $q.defer();
-      coFn.apply(coFn, arguments).then(function() {
+      coFn.apply(coFn, arguments).then(function () {
         deferred.resolve.apply(deferred.resolve, arguments);
-      }).catch(function(err) {
+      })["catch"](function (err) {
         deferred.reject(err);
       });
       return deferred.promise;
     };
   };
+
   return co;
 }]);
-//# sourceURL=co.js

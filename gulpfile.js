@@ -3,12 +3,12 @@ var plg = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'gulp.*'],
 	replaceString: /\bgulp[\-.]/
 });
+var to5 = require('gulp-6to5');
 
 gulp.task('default', function() {
 	return gulp.src('./src/co.js')
-		//.pipe(plg.plumber())
 		.pipe(plg.sourcemaps.init())		
-		.pipe(plg.traceur())
+		.pipe(to5())
 		.pipe(plg.ngAnnotate())
 		.pipe(gulp.dest('./dist/'))		
 		.pipe(plg.rename('co.min.js'))
