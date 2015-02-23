@@ -42,6 +42,29 @@ angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionH
     return deferred.promise;
   };
 
+  co.def = function (gen, def) {
+    return co(regeneratorRuntime.mark(function callee$2$0() {
+      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+        while (1) switch (context$3$0.prev = context$3$0.next) {
+          case 0:
+            context$3$0.prev = 0;
+            context$3$0.next = 3;
+            return gen;
+          case 3:
+            context$3$0.t1 = context$3$0.sent;
+            return context$3$0.abrupt("return", transform(context$3$0.t1));
+          case 7:
+            context$3$0.prev = 7;
+            context$3$0.t2 = context$3$0["catch"](0);
+            return context$3$0.abrupt("return", def(context$3$0.t2));
+          case 10:
+          case "end":
+            return context$3$0.stop();
+        }
+      }, callee$2$0, this, [[0, 7]]);
+    }));
+  };
+
   co.transform = function (gen, transform) {
     return co(regeneratorRuntime.mark(function callee$2$0() {
       return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
@@ -50,8 +73,8 @@ angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionH
             context$3$0.next = 2;
             return gen;
           case 2:
-            context$3$0.t1 = context$3$0.sent;
-            return context$3$0.abrupt("return", transform(context$3$0.t1));
+            context$3$0.t3 = context$3$0.sent;
+            return context$3$0.abrupt("return", transform(context$3$0.t3));
           case 4:
           case "end":
             return context$3$0.stop();
@@ -226,20 +249,6 @@ angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionH
         }
       }, callee$2$0, this);
     }));
-  };
-
-  co.wrap = function (gen) {
-    var coFn = coJS.wrap(createGeneratorProxy(gen));
-
-    return function () {
-      var deferred = $q.defer();
-      coFn.apply(coFn, arguments).then(function () {
-        deferred.resolve.apply(deferred.resolve, arguments);
-      })["catch"](function (err) {
-        deferred.reject(err);
-      });
-      return deferred.promise;
-    };
   };
 
   return co;

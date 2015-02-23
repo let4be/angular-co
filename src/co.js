@@ -25,6 +25,16 @@ angular.module('angular-co', []).factory('co', function($q, $rootScope, $excepti
 		return deferred.promise;
 	};
 
+	co.def = function (gen, def) {
+		return co(function *(){
+			try {
+				return transform(yield gen);
+			} catch (err) {
+				return def(err);
+			}
+		});
+	};
+
 	co.transform = function (gen, transform) {
 		return co(function *(){
 			return transform(yield gen);
@@ -82,23 +92,6 @@ angular.module('angular-co', []).factory('co', function($q, $rootScope, $excepti
 			}
 			return init;
 		});
-	};
-
-	co.wrap = function (gen) {
-		var coFn = coJS.wrap(createGeneratorProxy(gen));
-
-		return function () {
-			var deferred = $q.defer();
-			coFn
-				.apply(coFn, arguments)
-				.then(function () {
-					deferred.resolve.apply(deferred.resolve, arguments);
-				})
-				.catch(function (err){
-					deferred.reject(err);
-				});
-			return deferred.promise;
-		};
 	};
 
 	return co;

@@ -1,6 +1,6 @@
 {
   "name": "angular-co",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "The ultimate generator based flow-control goodness for angular.js",
   "main": "gulpfile.js",
   "dependencies": {
