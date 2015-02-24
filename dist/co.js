@@ -51,17 +51,16 @@ angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionH
             context$3$0.next = 3;
             return gen;
           case 3:
-            context$3$0.t1 = context$3$0.sent;
-            return context$3$0.abrupt("return", transform(context$3$0.t1));
-          case 7:
-            context$3$0.prev = 7;
-            context$3$0.t2 = context$3$0["catch"](0);
-            return context$3$0.abrupt("return", def(context$3$0.t2));
-          case 10:
+            return context$3$0.abrupt("return", context$3$0.sent);
+          case 6:
+            context$3$0.prev = 6;
+            context$3$0.t1 = context$3$0["catch"](0);
+            return context$3$0.abrupt("return", def(context$3$0.t1));
+          case 9:
           case "end":
             return context$3$0.stop();
         }
-      }, callee$2$0, this, [[0, 7]]);
+      }, callee$2$0, this, [[0, 6]]);
     }));
   };
 
@@ -73,8 +72,8 @@ angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionH
             context$3$0.next = 2;
             return gen;
           case 2:
-            context$3$0.t3 = context$3$0.sent;
-            return context$3$0.abrupt("return", transform(context$3$0.t3));
+            context$3$0.t2 = context$3$0.sent;
+            return context$3$0.abrupt("return", transform(context$3$0.t2));
           case 4:
           case "end":
             return context$3$0.stop();

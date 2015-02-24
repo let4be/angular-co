@@ -28,7 +28,7 @@ angular.module('angular-co', []).factory('co', function($q, $rootScope, $excepti
 	co.def = function (gen, def) {
 		return co(function *(){
 			try {
-				return transform(yield gen);
+				return yield gen;
 			} catch (err) {
 				return def(err);
 			}
