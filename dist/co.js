@@ -55,7 +55,7 @@ angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionH
           case 6:
             context$3$0.prev = 6;
             context$3$0.t1 = context$3$0["catch"](0);
-            return context$3$0.abrupt("return", def(context$3$0.t1));
+            return context$3$0.abrupt("return", angular.isFunction(def) ? def(context$3$0.t1) : def);
           case 9:
           case "end":
             return context$3$0.stop();
@@ -140,51 +140,52 @@ angular.module("angular-co", []).factory("co", ["$q", "$rootScope", "$exceptionH
       return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
         while (1) switch (context$3$0.prev = context$3$0.next) {
           case 0:
+            r = undefined;
             if (!angular.isArray(object)) {
-              context$3$0.next = 12;
+              context$3$0.next = 13;
               break;
             }
             r = [];
             i = 0;
-          case 3:
+          case 4:
             if (!(i < object.length)) {
-              context$3$0.next = 10;
+              context$3$0.next = 11;
               break;
             }
-            context$3$0.next = 6;
+            context$3$0.next = 7;
             return mapGen(object[i], i, object);
-          case 6:
-            r[i] = context$3$0.sent;
           case 7:
+            r[i] = context$3$0.sent;
+          case 8:
             i++;
-            context$3$0.next = 3;
+            context$3$0.next = 4;
             break;
-          case 10:
-            context$3$0.next = 22;
+          case 11:
+            context$3$0.next = 23;
             break;
-          case 12:
+          case 13:
             if (!angular.isObject(object)) {
-              context$3$0.next = 22;
+              context$3$0.next = 23;
               break;
             }
             r = {};
             _iterator2 = Object.keys(object)[Symbol.iterator]();
-          case 15:
+          case 16:
             if ((_step2 = _iterator2.next()).done) {
-              context$3$0.next = 22;
+              context$3$0.next = 23;
               break;
             }
             k = _step2.value;
-            context$3$0.next = 19;
+            context$3$0.next = 20;
             return mapGen(object[k], k, object);
-          case 19:
-            r[k] = context$3$0.sent;
           case 20:
-            context$3$0.next = 15;
+            r[k] = context$3$0.sent;
+          case 21:
+            context$3$0.next = 16;
             break;
-          case 22:
-            return context$3$0.abrupt("return", r);
           case 23:
+            return context$3$0.abrupt("return", r);
+          case 24:
           case "end":
             return context$3$0.stop();
         }

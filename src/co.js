@@ -1,5 +1,5 @@
 angular.module('angular-co', []).factory('co', function($q, $rootScope, $exceptionHandler) {
-	var createGeneratorProxy = (gen) => function *() {
+	let createGeneratorProxy = (gen) => function *() {
 		try {
 			return yield gen;
 		} catch (err) {
@@ -11,8 +11,8 @@ angular.module('angular-co', []).factory('co', function($q, $rootScope, $excepti
 		}
 	};
 
-	var co = function (gen) {
-		var deferred = $q.defer();
+	let co = function (gen) {
+		let deferred = $q.defer();
 
 		coJS(createGeneratorProxy(gen))
 			.then(function () {
@@ -25,50 +25,44 @@ angular.module('angular-co', []).factory('co', function($q, $rootScope, $excepti
 		return deferred.promise;
 	};
 
-	co.def = function (gen, def) {
-		return co(function *(){
-			try {
-				return yield gen;
-			} catch (err) {
-				return def(err);
+	co.def = (gen, def) => co(function *() {
+		try {
+			return yield gen;
+		} catch (err) {
+			return angular.isFunction(def) ? def(err) : def;
+		}
+	});
+
+	co.transform = (gen, transform) => co(function *(){
+		return transform(yield gen);
+	});
+
+	co.each = (object, mapGen) => co(function *() {
+		if (angular.isArray(object)) {
+			for (let i = 0; i < object.length; i++) {
+				yield mapGen(object[i], i, object);
 			}
-		});
-	};
-
-	co.transform = function (gen, transform) {
-		return co(function *(){
-			return transform(yield gen);
-		});
-	};
-
-	co.each = function (object, mapGen) {
-		return co(function *() {
-			if (angular.isArray(object)) {
-				for (var i = 0; i < object.length; i++) {
-					yield mapGen(object[i], i, object);
-				}
-			} else if (angular.isObject(object)) {
-				for (var k of Object.keys(object)) {
-					yield mapGen(object[k], k, object);
-				}
+		} else if (angular.isObject(object)) {
+			for (let k of Object.keys(object)) {
+				yield mapGen(object[k], k, object);
 			}
-		});
-	};
+		}
+	});
 
-	co.map = function (object, mapGen, init) {
+	co.map = (object, mapGen, init) => {
 		if (!object)
 			return init;
 
 		return co(function *() {
-			var r;
+			let r;
 			if (angular.isArray(object)) {
 				r = [];
-				for (var i = 0; i < object.length; i++) {
+				for (let i = 0; i < object.length; i++) {
 					r[i] = yield mapGen(object[i], i, object);
 				}
 			} else if (angular.isObject(object)) {
 				r = {};
-				for (var k of Object.keys(object)) {
+				for (let k of Object.keys(object)) {
 					r[k] = yield mapGen(object[k], k, object);
 				}
 			}
@@ -76,17 +70,17 @@ angular.module('angular-co', []).factory('co', function($q, $rootScope, $excepti
 		});
 	};
 
-	co.reduce = function (object, reduceGen, init) {
+	co.reduce = (object, reduceGen, init) => {
 		if (!object)
 			return init;
 
 		return co(function *() {
 			if (angular.isArray(object)) {
-				for (var i = 0; i < object.length; i++) {
+				for (let i = 0; i < object.length; i++) {
 					init = yield reduceGen(init, object[i], i, object);
 				}
 			} else if (angular.isObject(object)) {
-				for (var k of Object.keys(object)) {
+				for (let k of Object.keys(object)) {
 					init = yield reduceGen(init, object[k], k, object);
 				}
 			}
