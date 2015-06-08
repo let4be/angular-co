@@ -1,6 +1,13 @@
 {
   "name": "angular-co",
-  "version": "0.2.7",
+  "version": "0.2.8",
+
+  "author": {
+    "name": "let4be",
+    "url": "https://github.com/let4be"
+  },
+  "license": "MIT",
+
   "description": "The ultimate generator based flow-control goodness for angular.js",
   "main": "gulpfile.js",
   "dependencies": {
@@ -15,7 +22,7 @@
   },
   "devDependencies": {
     "gulp": "^3.8.10",
-    "gulp-6to5": "^2.0.2",
+    "gulp-babel": "^5.1.0",
     "gulp-load-plugins": "^0.8.0",
     "gulp-ng-annotate": "^0.5.0",
     "gulp-rename": "^1.2.0",
@@ -30,14 +37,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/let4be/angular-co.git"
-  },
-  "keywords": [
-    "\"angular.js\""
-  ],
-  "author": "\"co.js\",",
-  "license": "    \"generator\",",
-  "bugs": {
-    "url": "https://github.com/let4be/angular-co/issues"
   },
   "homepage": "https://github.com/let4be/angular-co"
 }
